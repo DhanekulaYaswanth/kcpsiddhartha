@@ -18,7 +18,7 @@ function Login(props){
         e.preventDefault();
         var name = document.getElementById('name').value;
         var pass = document.getElementById('pass').value;
-        axios.post('http://localhost:3030/validate',{Name:name,Password:pass})
+        axios.post('https://kcpsiddharthaserver.vercel.app/validate',{Name:name,Password:pass})
         .then((res)=>{
             setresponse(res.data);
             navigate('/results'); // Redirect if status is true
