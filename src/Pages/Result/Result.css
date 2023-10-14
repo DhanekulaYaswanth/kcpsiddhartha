@@ -1,0 +1,105 @@
+.resultcontainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(./Resultbg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner{
+
+    width: 100%;
+    height: 20%;
+}
+
+.studentdetails{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+}
+
+
+.studentdetails>h1{
+    font-size: 26px;
+    margin: 0;
+    display: flex;
+    font-weight: 500;
+    gap: 20px;
+}
+
+
+.resultdiv{
+    height: 100%;
+    width: 100%;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+.resultcaption{
+    font-size: 30px;
+    font-weight:500;
+}
+
+.result{
+    border: 1px solid;
+    font-size: 20px;
+}
+
+
+.resultheadings>th{
+    border: 1px solid black;
+    color: rgb(184, 106, 11);
+}
+
+
+.resultbody>th{
+    border: 1px solid black;
+    color: blue;
+}
+
+
+.resultbody>td{
+    border: 1px solid black;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+
+
+
+.buttons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+.buttons>a{
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: rgb(82, 82, 219);
+    border: none;
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: 500;
+    height: 60px;
+    cursor: pointer;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+}
+
+
+.buttons>button:hover{
+    background-color: blue;
+}
