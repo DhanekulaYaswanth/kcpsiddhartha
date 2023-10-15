@@ -18,7 +18,8 @@ app.use(express.json());
 
 const allowedOrigins = [
   'https://dhanekulayaswanth.github.io',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'https://kcpsarpschool.org/resultcheck/',
 ];
 
 const corsOptions = {
