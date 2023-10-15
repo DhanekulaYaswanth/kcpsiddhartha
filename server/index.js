@@ -12,12 +12,18 @@ dotenv.config()
 const app = express()
 const buildPath = path.join(__dirname+"/public")
 app.use(express.json());
-app.use(cors());
 
-app.use(cors({
-  origin: 'https://dhanekulayaswanth.github.io',
+const allowedOrigins = [
+  'https://dhanekulayaswanth.github.io',
+  'http://localhost:3000'
+];
+
+const corsOptions = {
+  origin: allowedOrigins,
   // You can add more options as needed
-}));
+};
+
+app.use(cors(corsOptions));
 
 var connection;
 
