@@ -11,7 +11,7 @@ function Result(props){
 
     useEffect(()=>{
         if(response.length===0){
-            navigate('/login'); // Redirect if status is true
+            navigate('/'); // Redirect if status is true
         }
     },[response])
 

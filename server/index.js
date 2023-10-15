@@ -3,8 +3,9 @@ const mysql = require('mysql');
 const path = require('path');
 const cors = require('cors');
 
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 dotenv.config()
+
 
 
 
@@ -12,6 +13,11 @@ const app = express()
 const buildPath = path.join(__dirname+"/public")
 app.use(express.json());
 app.use(cors());
+
+app.use(cors({
+  origin: 'https://dhanekulayaswanth.github.io',
+  // You can add more options as needed
+}));
 
 var connection;
 
