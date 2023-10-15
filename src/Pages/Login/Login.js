@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './Login.css';
 import axios from "axios";
 import Loading from "../Loading/Loading";
@@ -13,18 +13,23 @@ function Login(props){
 
     const {response,setresponse} = props;
 
+    const [loading,setloading] = useState(false);
+
 
     const handleSubmit = (e) =>{
         e.preventDefault();
+        setloading(true);
         var name = document.getElementById('name').value;
         var pass = document.getElementById('pass').value;
         axios.post('https://kcpsiddharthaserver.vercel.app/validate',{Name:name,Password:pass})
         .then((res)=>{
+            setloading(false)
             setresponse(res.data);
             navigate('/results'); // Redirect if status is true
 
         })
         .catch((err)=>{
+            setloading(false)
             setresponse(err.response.data)
         })
         
@@ -34,6 +39,7 @@ function Login(props){
       useEffect(()=>{
         if(response.length!==0){
             setresponse([])
+            setloading(false)
         }
       },[])
 
@@ -76,7 +82,7 @@ function Login(props){
 
                     <div className="loading">
                     {
-                        response.status && response.length!==0?
+                        loading?
                             <Loading/>
                         :
                         <button className="submitbtn" type="submit">
