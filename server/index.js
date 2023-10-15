@@ -154,7 +154,7 @@ app.get('/table/:class', (req, res) => {
     tableName = process.env.results; // Replace with your default table name for other classes
   }
 
-  connection.query(`SELECT * FROM ${tableName} WHERE class = ?, [classNumber]`, (error, results) => {
+  connection.query(`SELECT * FROM ${tableName} WHERE class = ?`, [classNumber], (error, results) => {
     if (error) throw error;
     res.send(renderTable(results));
     connection.end((err) => {
@@ -172,14 +172,14 @@ app.get('/table/:class', (req, res) => {
 
   // Helper function to render table
   function renderTable(data) {
-    let tableHTML = '<table border="1" cellpadding="10" cellspacing="20"><tr>';
+    let tableHTML = '<table border="1" cellspacing="10" cellpadding="20"><tr>';
     const keys = Object.keys(data[0]);
-    tableHTML += keys.map(key => <th>${key}</th>).join('') + '</tr>';
+    tableHTML += keys.map(key => `<th>${key}</th>`).join('') + '</tr>';
   
     data.forEach(record => {
       tableHTML += '<tr>';
       keys.forEach(key => {
-        tableHTML += <td>${record[key]}</td>;
+        tableHTML += `<td>${record[key]}</td>`;
       });
       tableHTML += '</tr>';
     });
