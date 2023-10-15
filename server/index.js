@@ -130,6 +130,64 @@ const getMarks = (admno,classno, callback) => {
 
 
 
+app.get('/table/:class', (req, res) => {
+  const classNumber = req.params.class;
+
+  connection = mysql.createConnection({
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database,
+    port: process.env.port
+  });
+
+  connection.connect((err) => {
+    if (err) throw err;
+    console.log('Connected to MySQL database');
+  });
+
+  let tableName='studentmarksplus12';
+
+  if (classNumber === '11' || classNumber === '12') {
+    tableName = 'studentmarksplus12';
+  } else {
+    tableName = process.env.results; // Replace with your default table name for other classes
+  }
+
+  connection.query(`SELECT * FROM ${tableName} WHERE class = ?, [classNumber]`, (error, results) => {
+    if (error) throw error;
+    res.send(renderTable(results));
+    connection.end((err) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log('Connection ended');
+    });
+  });
+});
+
+
+
+
+
+  // Helper function to render table
+  function renderTable(data) {
+    let tableHTML = '<table border="1" cellpadding="10" cellspacing="20"><tr>';
+    const keys = Object.keys(data[0]);
+    tableHTML += keys.map(key => <th>${key}</th>).join('') + '</tr>';
+  
+    data.forEach(record => {
+      tableHTML += '<tr>';
+      keys.forEach(key => {
+        tableHTML += <td>${record[key]}</td>;
+      });
+      tableHTML += '</tr>';
+    });
+  
+    tableHTML += '</table>';
+    return tableHTML;
+  }
+
 
 
 
