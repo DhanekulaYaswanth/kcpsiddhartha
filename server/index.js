@@ -9,6 +9,9 @@ dotenv.config()
 
 
 
+
+
+
 const app = express()
 const buildPath = path.join(__dirname+"/public")
 app.use(express.json());
@@ -26,6 +29,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 var connection;
+
+
+
+
+
 
 
 app.post('/validate',(req,res)=>{
@@ -75,7 +83,7 @@ app.post('/validate',(req,res)=>{
       else{
         // Send response first
 
-        getMarks(user.admno, process.env.results, (err, data) => {
+        getMarks(user.admno,user.class , (err, data) => {
           if (err) {
             console.error('Error fetching data:', err);
             return;
@@ -96,7 +104,16 @@ app.post('/validate',(req,res)=>{
 
 
 
-const getMarks = (admno, tablename, callback) => {
+const getMarks = (admno,classno, callback) => {
+
+  let tablename='studentmarksplus12';
+
+  if (classno === '11' || classno === '12') {
+    tablename = 'studentmarksplus12';
+  } else {
+    tablename = process.env.results;
+  }
+
   var query = `select * from ${tablename} where admno=${admno};`;
 
   connection.query(query, (err, result) => {
@@ -108,9 +125,6 @@ const getMarks = (admno, tablename, callback) => {
     callback(null, result); // Pass the result to the callback
   });
 }
-
-
-
 
 
 
