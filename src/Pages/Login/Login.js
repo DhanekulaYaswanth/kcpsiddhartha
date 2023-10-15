@@ -21,7 +21,7 @@ function Login(props){
         setloading(true);
         var name = document.getElementById('name').value;
         var pass = document.getElementById('pass').value;
-        axios.post('https://kcpsiddhartha.vercel.app/validate',{Name:name,Password:pass})
+        axios.post('http://kcpsiddhartha.vercel.app/validate',{Name:name,Password:pass})
         .then((res)=>{
             setloading(false)
             setresponse(res.data);
