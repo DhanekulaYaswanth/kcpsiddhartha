@@ -21,7 +21,7 @@ function Login(props){
         setloading(true);
         var name = document.getElementById('name').value;
         var pass = document.getElementById('pass').value;
-        axios.post('http://kcpsiddhartha.vercel.app/validate',{Name:name,Password:pass})
+        axios.post('https://kcpsiddhartha.vercel.app/validate',{Name:name,Password:pass})
         .then((res)=>{
             setloading(false)
             setresponse(res.data);
@@ -52,7 +52,7 @@ function Login(props){
                 <form className="Loginform" onSubmit={handleSubmit}>
                     <h1>Parent's Login</h1>
                     <div className="fields">
-                        <label>Roll No</label>
+                        <label>Admission Number</label>
                         <div className="inputs">
                             <FontAwesomeIcon icon={faUser} className="inputicon"/>
                             <input type='text' id='name' placeholder="Enter Student Registration Number" required/>
