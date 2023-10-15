@@ -145,9 +145,7 @@ function Result(props){
                             <h1  key={1003}>Admission Number : <label key={1008}>{response.user.admno}</label></h1>
                             <h1 key={1004}>Class : <label key={1009}>{response.user.class} ({
                                  response.user.class <= 9 ? response.user.class_sec.slice(1) :
-                                 response.user.class == 10 ? '10A' :
-                                 response.user.class >= '11' && response.user.class <= '12' ? response.user.class_sec.slice(2) :
-                                 null
+                                  response.user.class_sec.slice(2)
                             })</label></h1>
                         </div>                        
                         <label className="resultcaption" key={1020}>RESULTS</label>
