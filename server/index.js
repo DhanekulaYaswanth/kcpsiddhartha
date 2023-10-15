@@ -29,8 +29,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-var connection;
-
 
 
 
