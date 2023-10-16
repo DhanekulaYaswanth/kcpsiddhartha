@@ -16,24 +16,28 @@ const app = express()
 const buildPath = path.join(__dirname+"/public")
 app.use(express.json());
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'https://kcpsarpschool.org');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://kcpsarpschool.org');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 
-app.use(cors({
-  origin: [
-    'https://dhanekulayaswanth.github.io',
-    'http://localhost:3000',
-    'https://www.kcpsarpschool.org/resultpage/',
-    'https://kcpsarpschool.org'
-  ],
-  methods: 'GET, POST, PUT, DELETE',
-  allowedHeaders: 'Content-Type, Authorization'
-}));
 
+const allowedOrigins = [
+  'https://dhanekulayaswanth.github.io',
+  'http://localhost:3000',
+  'https://kcpsarpschool.org/resultpage',
+];
+
+
+
+const corsOptions = {
+  origin: allowedOrigins,
+};
+
+
+app.use(cors(corsOptions));
 
 
 
