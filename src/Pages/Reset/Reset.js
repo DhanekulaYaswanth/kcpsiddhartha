@@ -163,15 +163,15 @@ function Reset(props) {
                 </div>
             </div>
             {
-              status!==null?
+              status===null?
                 <button className='resetbtn' style={{backgroundColor:(passtest[0] && passtest[1])?'':'gray'}}  type='submit'>Reset</button>
 
               :
               <div className='loading'>
-                <label></label>
-                <label></label>
-                <label></label>
-                <label></label>
+                <label className='wave1'></label>
+                <label className='wave2'></label>
+                <label className='wave3'></label>
+                <label className='wave4'></label>
               </div>
 
             }

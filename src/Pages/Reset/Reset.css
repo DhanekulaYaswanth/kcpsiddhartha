@@ -232,10 +232,33 @@
   height: 20px;
   border-radius: 50%;
   background-color: orangered;
-  animation: wave 1s infinite;
 }
 
 
+.wave1{
+  animation: wave  1s 1s infinite;
+}
+
+
+.wave2{
+  animation: wave  1s 1.4s infinite;
+}
+
+.wave3{
+  animation: wave  1s 1.8s infinite;
+}
+
+.wave4{
+  animation: wave  1s 1.12s infinite;
+}
+
+
+
 @keyframes wave {
-  
+  0%{
+    transform: translateY(-50%);
+  }
+  100%{
+    transform: translateZ(0%);
+  }
 }
