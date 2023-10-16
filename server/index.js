@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 const allowedOrigins = [
   'https://dhanekulayaswanth.github.io',
   'http://localhost:3000',
-  'https://kcpsarpschool.org/resultpage',
+  'https://kcpsarpschool.org/',
 ];
 
 
