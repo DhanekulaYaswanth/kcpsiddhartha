@@ -1,0 +1,241 @@
+.resetcontainer{
+  width: 100%;
+  height: 100%;
+  background-image: url(./kcp\ copy.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.resetform{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+
+.resettitle{
+  margin-bottom: 30px;
+  font-size: 40px;
+}
+
+
+
+
+
+
+.resetinputs{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.resetinputs>label{
+  display: flex;
+  padding-left:10px ;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+
+.resetinputs>div{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.resetinputs>div>[type='password']{
+  width: 500px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 10px;
+  border: 3px solid rgb(105, 105, 105);
+  padding-left: 20px;
+  font-size: 20px;
+  outline: none;
+}
+
+
+.resetinputs>div>[type='password']:focus{
+
+  border: 3px solid rgb(34, 34, 34);
+
+}
+
+
+.resetinputs>div>[type='text']{
+  width: 500px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 10px;
+  border: 3px solid rgb(105, 105, 105);
+  padding-left: 20px;
+  font-size: 20px;
+  outline: none;
+}
+
+
+
+.resetinputs>div>[type='text']:focus{
+
+  border: 3px solid rgb(34, 34, 34);
+
+}
+
+.resetinputs>div>[type='password']::placeholder{
+  color: rgb(63, 62, 62);
+}
+
+
+.resetinputs>div>[type='text']::placeholder{
+  color: rgb(63, 62, 62);
+}
+
+
+.eye{
+  position: absolute;
+  right: 10px;
+  font-size: 26px;
+  cursor: pointer;
+  color: rgb(53, 53, 53);
+}
+
+
+
+
+
+.strike{
+  display: flex;
+  position: absolute;
+  background-color: rgb(48, 48, 48);
+  width: 40px;
+  height: 3px;
+  right: 5px;
+  cursor: pointer;
+  transform: rotate(-45deg);
+}
+
+
+
+
+
+
+
+.resetbtn{
+  background-color: transparent;
+  width: 150px;
+  font-size: 23px;
+  border-radius: 10px;
+  height: 50px;
+  font-weight: 600;
+  background-color: rgb(73, 73, 209);
+  color: aliceblue;
+  border: none;
+  transition: .4s;
+  cursor: pointer;
+}
+
+
+.resetbtn:hover{
+  background-color: blue;
+}
+
+
+.criteria{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: flex-start;
+  gap:10px;
+  background-color: rgba(12, 46, 54, 0.825);
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+}
+
+
+.criteria>div{
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+
+.criteria>div>label{
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.criteria>div>.check{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+.errorpass{
+  font-size: 20px;
+  padding-left: 10px;
+  color: rgb(188, 15, 15);
+  font-weight: 500;
+}
+
+
+
+.resetsuccesfull{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.65);
+  width: 500px;
+  height: 150px;
+}
+
+
+.resetsuccesfull>label{
+  font-size: 26px;
+}
+
+
+.loading{
+  display: flex;
+  width: 100%;
+  gap: 5px;
+}
+
+
+.loading>label{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: orangered;
+  animation: wave 1s infinite;
+}
+
+
+@keyframes wave {
+  
+}

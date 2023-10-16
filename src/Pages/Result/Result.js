@@ -17,7 +17,6 @@ function Result(props){
 
 
 
-
     const subjects = {
         '4': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'computer':'Computer', 'gk':'GK (60)'},
 

@@ -25,7 +25,11 @@ function Login(props){
         .then((res)=>{
             setloading(false)
             setresponse(res.data);
-            navigate('/results'); // Redirect if status is true
+            if(res.data.user.flag==='0'){
+                navigate('/resetpassword');
+            }else{
+                navigate('/results'); // Redirect if status is true
+            }
 
         })
         .catch((err)=>{

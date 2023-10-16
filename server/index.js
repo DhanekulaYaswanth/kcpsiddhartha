@@ -132,6 +132,84 @@ const getMarks = (admno,classno, callback) => {
 
 
 
+app.post('/resetpass',(req,res)=>{
+    const userId = req.body.id;
+    const password = req.body.password;
+    
+    connection = mysql.createConnection({
+      host: process.env.host,
+      user: process.env.user,
+      password: process.env.password,
+      database: process.env.database,
+      port: process.env.port
+    });
+    
+    connection.connect((err) => {
+      if (err) {
+        console.error('Error connecting to the database: ', err);
+        return;
+      }
+    
+      console.log('Connected to the database');
+    });
+    
+    const tablename = process.env.studentdata;
+    
+    connection.query(`UPDATE ${tablename} SET pwd = ?, flag = ? WHERE admno = ?`, [password,1,userId],(err, updateResults) => {
+      if (err) {
+        console.error('Error updating password and flag: ', err);
+        res.status(500).send('Error updating password and flag');
+        return;
+      }
+    
+      res.send({ status: true, message: 'Password and flag updated' });
+      
+      connection.end((err) => {
+        if (err) console.log(err);
+        console.log('connection ended')
+      });
+    });
+})
+
+
+
+
+app.get('/table/:class', (req, res) => {
+  const classNumber = req.params.class;
+
+  connection = mysql.createConnection({
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database,
+    port: process.env.port
+  });
+
+  connection.connect((err) => {
+    if (err) throw err;
+    console.log('Connected to MySQL database');
+  });
+
+  let tableName=process.env;
+
+
+  connection.query(`SELECT * FROM ${tableName} WHERE class = ?`, [classNumber], (error, results) => {
+    if (error) throw error;
+    res.send(renderTable(results));
+    connection.end((err) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log('Connection ended');
+    });
+  });
+});
+
+
+
+
+
+
 app.get('/table/:class', (req, res) => {
   const classNumber = req.params.class;
 
