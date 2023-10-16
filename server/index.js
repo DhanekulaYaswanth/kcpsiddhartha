@@ -33,7 +33,7 @@ const allowedOrigins = [
 
 
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: '*',
 };
 
 
