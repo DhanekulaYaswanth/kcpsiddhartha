@@ -174,36 +174,6 @@ app.post('/resetpass',(req,res)=>{
 
 
 
-app.get('/table/:class', (req, res) => {
-  const classNumber = req.params.class;
-
-  connection = mysql.createConnection({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database,
-    port: process.env.port
-  });
-
-  connection.connect((err) => {
-    if (err) throw err;
-    console.log('Connected to MySQL database');
-  });
-
-  let tableName=process.env;
-
-
-  connection.query(`SELECT * FROM ${tableName} WHERE class = ?`, [classNumber], (error, results) => {
-    if (error) throw error;
-    res.send(renderTable(results));
-    connection.end((err) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log('Connection ended');
-    });
-  });
-});
 
 
 
