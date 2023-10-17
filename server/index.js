@@ -16,24 +16,18 @@ const app = express()
 const buildPath = path.join(__dirname+"/public")
 app.use(express.json());
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://kcpsarpschool.org');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
-
 
 const allowedOrigins = [
   'https://dhanekulayaswanth.github.io',
   'http://localhost:3000',
   'https://kcpsarpschool.org/',
+  'https://www.kcpsarpschool.org'
 ];
 
 
 
 const corsOptions = {
-  origin: '*',
+  origin: 'https://kcpsarpschool.org/',
 };
 
 
@@ -93,7 +87,19 @@ app.post('/validate',(req,res)=>{
             console.error('Error fetching data:', err);
             return;
           }
-          res.send({status:true,message:'logged in',user:user,results:data});
+
+          var tempdata = {
+            'admno':user.admno,
+            'class':user.class,
+            'class_sec':user.class_sec,
+            'dob':user.dob,
+            'flag':user.flag,
+            'fname':user.fname,
+            'mname':user.mname,
+            'stu_name':user.stu_name
+          }
+
+          res.send({status:true,message:'logged in',user:tempdata,results:data});
         });
         
 

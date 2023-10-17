@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye} from '@fortawesome/free-solid-svg-icons';
 import './Reset.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function Reset(props) {
 
   const {response} = props;
+  const navigate = useNavigate(); // Access the navigate function
 
   const [password,setPassword] = useState([false,false]);
 
   const [criteria,setcriteria] = useState(['','','','',''])
 
-  const [passtest,setPassTest] = useState([null,null]);
+  const [passtest,setpasstest] = useState(false);
 
 
   const [status,setstatus] = useState(null);
@@ -23,7 +24,6 @@ function Reset(props) {
       const data = [...password];
       data[e]=!data[e]
       setPassword(data);
-      document.getElementById('')
     }
   }
 
@@ -35,28 +35,11 @@ function Reset(props) {
     data[1] = /[A-Z]/.test(newPassword); //checks capital
     data[2] = /\d/.test(newPassword); //checks for digits
     data[3] = /[@$!%*?&]/.test(newPassword); //checks for special characters
-    data[4] = newPassword.length>=8; //checks for length
+    data[4] = newPassword.length>=8 && newPassword.length<=15; //checks for length
 
-
-    var t = [...passtest];
-
-    t[1] = data[0] && data[1] && data[2] && data[3] && data[4];
-
-    setPassTest(t);
     setcriteria(data)
   };
 
-
-  const checkPassword = (e) =>{
-      var pass1 = document.getElementById('passtext1') || document.getElementById('pass1');
-      var t = [...passtest];
-      if(e.target.value!==pass1.value){
-        t[0] = false
-      }else{
-        t[0] = true;
-      }
-      setPassTest(t);
-  }
 
 
 
@@ -64,19 +47,29 @@ function Reset(props) {
     e.preventDefault();
     const pass1 = document.getElementById('passtext1') || document.getElementById('pass1');
     const pass2 = document.getElementById('passtext2') || document.getElementById('pass2');
-    if(passtest[0] && passtest[1]){
+    var t = criteria[0] && criteria[1] && criteria[2] && criteria[3] && criteria[4]
+    if(pass1.value===pass2.value && t){
+      setstatus(false);
       axios.post('https://kcpsiddhartha.vercel.app/resetpass',{'id':response.user.admno,'password':pass1.value})
       .then((res)=>{
         setstatus(res.data.status)
       })
       .catch((err)=>{
+        setstatus(null)
         console.log(err);
       })
+    }else{
+      setpasstest(true)
     }
   }
 
+  useEffect(()=>{
+    if(response.length===0){
+        navigate('/'); // Redirect if status is true
+    }
+ },[response])
 
-  console.log(status)
+
 
 
 
@@ -86,12 +79,23 @@ function Reset(props) {
         {
           status?
           <div className='resetsuccesfull'>
+              <label className='adno'>Admission No : {response.user.admno}</label>
+              <label className='resetok'>&#x2713;</label>
               <label>Password Reset Succesfull!</label>
               <label>Click here to <Link to='/'>Login</Link> to see the result</label>
           </div>
           :
           <form className='resetform' onSubmit={handleSubmit}>
-            <h1 className='resettitle'>Reset Password</h1>
+            <div>
+              <h1 className='resettitle'>Reset Password</h1>
+              {
+                response.length===0?
+                ''
+                :
+                <label className='admno'>Admission No : {response.user.admno}</label>
+              }
+            </div>
+           
             <div className='resetinputs'>
                 <label>Password</label>
                 <div>
@@ -130,7 +134,7 @@ function Reset(props) {
                 </div>
                 <div>
                   <label className='check' style={{color:criteria[4]?'rgb(0, 255, 0)':'rgb(255, 21, 0)'}}>{criteria[4]?<>&#x2713;</>:'!'}</label>
-                  <label>Password length should be minimum of 8 characters</label>
+                  <label>Password length should be minimum of 8 characters and maximum of 15 characters</label>
                 </div>
             </div>
 
@@ -140,9 +144,9 @@ function Reset(props) {
                 <div>
                 {
                     password[3]?
-                    <input type='text'  id='passtext2' placeholder='enter your password' onChange={checkPassword} required/>
+                    <input type='text'  id='passtext2' placeholder='enter your password'  required/>
                     :
-                    <input type='password'  id='pass2' placeholder='enter your password' onChange={checkPassword} required/>
+                    <input type='password'  id='pass2' placeholder='enter your password'  required/>
 
                   }                
                   <FontAwesomeIcon icon={faEye} className='eye' onClick={()=>handlePassword(3)}/>
@@ -155,8 +159,10 @@ function Reset(props) {
                 </div>
                 <div>
                 {
-                    !passtest[0] && passtest[0]!==null?
-                    <label className='errorpass'>Password dosen't match</label>
+                    passtest?
+                    <label className='errorpass'>
+                        {criteria[0] && criteria[1] && criteria[2] && criteria[3] && criteria[4]?'Password dosen\'t match':'password need to met the required criteria'}
+                      </label>
                     :
                     ''
                 }
@@ -164,15 +170,15 @@ function Reset(props) {
             </div>
             {
               status===null?
-                <button className='resetbtn' style={{backgroundColor:(passtest[0] && passtest[1])?'':'gray'}}  type='submit'>Reset</button>
+                <button className='resetbtn'  type='submit'>Reset</button>
 
               :
-              <div className='loading'>
-                <label className='wave1'></label>
-                <label className='wave2'></label>
-                <label className='wave3'></label>
-                <label className='wave4'></label>
-              </div>
+              <span className='loading'>
+                <label className='wave1 wave'></label>
+                <label className='wave2 wave'></label>
+                <label className='wave3 wave'></label>
+                <label className='wave4 wave'></label>
+              </span>
 
             }
           </form>

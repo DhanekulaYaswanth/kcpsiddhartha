@@ -128,7 +128,6 @@ function Result(props){
 
 
 
-
     return(
         <div className="resultcontainer">
             {
@@ -139,15 +138,16 @@ function Result(props){
                     <div className="resultdiv">
                         <div className="studentdetails">
                             <h1 key={1000}>Sudent's Name : <label key={1005}>{response.user.stu_name}</label> </h1>
-                            <h1 key={1001}>Father's Name : <label key={1006}>{response.user.fname}</label></h1>
-                            <h1 key={1002}>Mother's Name : <label key={1007}>{response.user.mname}</label></h1>
                             <h1  key={1003}>Admission Number : <label key={1008}>{response.user.admno}</label></h1>
                             <h1 key={1004}>Class : <label key={1009}>{response.user.class} ({
                                  response.user.class <= 9 ? response.user.class_sec.slice(1) :
                                   response.user.class_sec.slice(2)
                             })</label></h1>
+                            <h1 key={1002}>Mother's Name : <label key={1007}>{response.user.mname}</label></h1>
+                            <h1 key={1001}>Father's Name : <label key={1006}>{response.user.fname}</label></h1>
+                            
                         </div>                        
-                        <label className="resultcaption" key={1020}>RESULTS</label>
+                        <label className="resultcaption" key={1020}>RESULT</label>
         
                         {/* <table className="result" cellPadding="15px" cellSpacing="1px">
                             <thead>
@@ -198,10 +198,9 @@ function Result(props){
                                         <th key='15155'>Exam Name</th>
                                         {thElements}
                                     </tr>
-                                
                                     {
                                         result.map((item)=>(
-                                            <tr className="resultbody">
+                                            <tr className="resultbody" key={j+100}>
                                                 <th key={item.examname}>{
                                                     item.examname==='PD1'?'PT 1 (30)'
                                                         :

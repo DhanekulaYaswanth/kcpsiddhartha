@@ -133,3 +133,321 @@
     font-size: 20px;
     color: red;
 }
+
+
+.error503{
+    margin: 0;
+    color: red;
+    border: 3px solid;
+    border-radius: 50%;
+    width:70px;
+    height: 70px;
+    padding: 5px;
+    animation: pop 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
+@keyframes pop {
+    0%{
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+  
+  
+  
+  .errorpage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.715);
+    width: 500px;
+    height: 360px;
+  }
+  
+  
+  .errorpage>label{
+    font-size: 26px;
+  }
+
+
+
+  .errorpage>.heading503{
+    font-size: 50px;
+    font-weight: bolder;
+
+}
+
+  
+
+
+@media (max-width:700px) {
+
+    .Loginform>h1{
+        font-size: 40px;
+    }
+
+
+    /* .fields{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    } */
+
+    .fields>label{
+        padding-left:10px ;
+        font-size: 20px;
+    }
+
+
+    .inputs>[type='text'],.inputs>[type='password']{
+        width: 400px;
+        height: 45px;
+        padding-left: 45px;
+        font-size: 16px;
+    }
+
+
+
+    .inputicon{
+        font-size: 23px;
+    }
+
+    .submitbtn{
+        height: 50px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+
+    .loading{
+        min-height: 50px;
+        max-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    .error{
+        font-size: 16px;
+    }
+
+    .notop{
+        width: 20px;
+        height: 20px;
+    }
+
+}
+
+
+
+
+@media (max-width:550px) {
+    .Loginform{
+        padding: 20px;
+        padding-bottom: 30px;
+        border-radius: 20px;
+        gap: 25px;
+    }
+
+
+    .Loginform>h1{
+        font-size: 30px;
+    }
+
+
+    /* .fields{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    } */
+
+    .fields>label{
+        padding-left:10px ;
+        font-size: 18px;
+    }
+
+
+    .inputs>[type='text'],.inputs>[type='password']{
+        width: 300px;
+        height: 45px;
+        padding-left: 40px;
+        font-size: 16px;
+    }
+
+
+
+    .inputicon{
+        font-size: 20px;
+    }
+
+    .submitbtn{
+        height: 40px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+
+    .loading{
+        min-height: 50px;
+        max-height: 80px;
+    }
+
+
+
+    .error{
+        font-size: 15px;
+    }
+
+    .notop{
+        width: 15px;
+        height: 15px;
+    }
+
+}
+
+
+
+@media (max-width:450px) {
+    .Loginform{
+        padding: 20px;
+        padding-bottom: 20px;
+        gap: 15px;
+    }
+
+
+    .Loginform>h1{
+        font-size: 23px;
+        margin: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+
+    .fields>label{
+        padding-left:10px ;
+        font-size: 14px;
+    }
+
+
+    .inputs>[type='text'],.inputs>[type='password']{
+        width: 200px;
+        height: 35px;
+        padding-left: 30px;
+        font-size: 13px;
+    }
+
+
+
+    .inputicon{
+        font-size: 16px;
+    }
+
+    .submitbtn{
+        height: 35px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+
+    .loading{
+        min-height: 50px;
+        max-height: 80px;
+    }
+
+
+
+    .error{
+        font-size: 14px;
+    }
+
+    .notop{
+        width: 15px;
+        height: 15px;
+    }
+
+}
+
+
+
+
+
+@media (max-width:300px) {
+    .Loginform{
+        padding: 15px;
+        gap: 10px;
+    }
+
+
+    .Loginform>h1{
+        font-size: 20px;
+        margin: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+
+    .fields>label{
+        padding-left:5px ;
+        font-size: 12px;
+    }
+
+
+    .inputs>[type='text'],.inputs>[type='password']{
+        width: 170px;
+        height: 30px;
+        padding-left: 33px;
+        font-size: 12px;
+    }
+
+
+
+    .inputicon{
+        font-size: 14px;
+    }
+
+    .submitbtn{
+        height: 30px;
+        border-radius: 7px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    .loading{
+        min-height: 50px;
+        max-height: 80px;
+    }
+
+
+
+    .error{
+        font-size: 12px;
+    }
+
+    .notop{
+        width: 15px;
+        height: 15px;
+    }
+
+}
+
+
+
+
+
+
+
+
+

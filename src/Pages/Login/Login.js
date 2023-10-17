@@ -3,7 +3,7 @@ import './Login.css';
 import axios from "axios";
 import Loading from "../Loading/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faLock, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate} from "react-router-dom";
 
 
@@ -14,6 +14,8 @@ function Login(props){
     const {response,setresponse} = props;
 
     const [loading,setloading] = useState(false);
+
+    const [error,seterror] = useState(null);
 
 
     const handleSubmit = (e) =>{
@@ -34,7 +36,11 @@ function Login(props){
         })
         .catch((err)=>{
             setloading(false)
-            setresponse(err.response.data)
+            if(err.response)
+                setresponse(err.response.data)
+            else
+                seterror(404);
+
         })
         
       }
@@ -52,6 +58,15 @@ function Login(props){
 
     return(
         <div className="LoginContainer">
+            {
+                error===404?
+                <div className='errorpage'>
+                    <label className="heading503">503</label>
+                    <FontAwesomeIcon className="error503" icon={faXmark}/>
+                    <label>Service Unavailable</label>
+                    <label>Try Again after some time (or) Contact Admin for assistance</label>
+                </div>
+                :
             <div>
                 <form className="Loginform" onSubmit={handleSubmit}>
                     <h1>Parent's Login</h1>
@@ -96,6 +111,7 @@ function Login(props){
                     </div>
                 </form>
             </div>
+            }
         </div>
     )
 }
