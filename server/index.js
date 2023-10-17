@@ -19,7 +19,7 @@ app.use(express.json());
 
 
 const corsOptions = {
-  origin: 'https://www.kcpsarpschool.org, https://kcpsarpschool.org',
+  origin: ['https://www.kcpsarpschool.org','https://kcpsarpschool.org'],
 };
 
 
