@@ -27,7 +27,7 @@ const allowedOrigins = [
 
 
 const corsOptions = {
-  origin: 'https://kcpsarpschool.org/',
+  origin: 'https://www.kcpsarpschool.org',
 };
 
 
