@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { HashRouter, Routes,Route, Outlet } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { HashRouter, Routes,Route, Outlet} from 'react-router-dom';
 import './App.css';
 import Login from './Pages/Login/Login';
 import Result from './Pages/Result/Result';
@@ -8,7 +8,6 @@ import Reset from './Pages/Reset/Reset';
 function App() {
 
   const [response,setresponse] = useState([]);
-
 
   return (
     <div className="App">

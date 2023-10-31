@@ -56,12 +56,17 @@ function Reset(props) {
       })
       .catch((err)=>{
         setstatus(null)
-        console.log(err);
+        //console.log(err);
       })
     }else{
       setpasstest(true)
     }
   }
+
+
+  useEffect(()=>{
+    document.title = 'Reset Password-KCPSARP'; // Set your desired title here
+  },)
 
   useEffect(()=>{
     if(response.length===0){

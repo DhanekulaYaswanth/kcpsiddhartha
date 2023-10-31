@@ -3,6 +3,18 @@ import './Result.css';
 import { useNavigate} from "react-router-dom";
 
 
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.onkeydown = function(e) {
+  if (e.ctrlKey && e.key === 'u') {
+    alert("ctrl + u disable");
+    return false;
+  }
+};
+
+
+
 function Result(props){
     const {response,setresponse} = props;
     const navigate = useNavigate(); // Access the navigate function
@@ -16,21 +28,26 @@ function Result(props){
     },[response])
 
 
+    useEffect(()=>{
+            document.title = 'Student Result-KCPSARP'; // Set your desired title here
+      },)
+
+
 
     const subjects = {
-        '4': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'computer':'Computer', 'gk':'GK (60)'},
+        '4': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3(30)', 'maths':'Maths', 'science':'Science', 'computer':'Computer (30)', 'gk':'GK (30)'},
 
-        '5': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'computer':'Computer', 'gk':'GK (60)'},
+        '5': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3(30)', 'maths':'Maths', 'science':'Science', 'computer':'Computer (30)', 'gk':'GK (30)'},
 
-        '6': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'Computer', 'gk':'GK (60)'},
+        '6': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3(30)', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'AI / Comp_Science (30)', 'gk':'GK (30)'},
 
-        '7': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'Computer', 'gk':'GK (60)'},
+        '7': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3(30)', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'AI / Comp_Science (30)', 'gk':'GK (30)'},
 
-        '8': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'Computer', 'gk':'GK (60)'},
+        '8': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3(30)', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'AI / Comp_Science (30)', 'gk':'GK (30)'},
 
-        '9': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'Computer'},
+        '9': {'english':'English', 'lang2':'Language 2', 'maths':'Maths', 'science':'Science', 'social':'Social Science', 'computer':'Artificial Intelligence (30)'},
 
-        '10': {'english':'English', 'lang2':'Language 2', 'lang3':'Language 3', 'maths':'Maths', 'science':'Science', 'social':'Social', 'computer':'Computer'},
+        '10': {'english':'English', 'lang2':'Language 2', 'maths':'Maths', 'science':'Science', 'social':'Social Science', 'computer':'Artificial Intelligence (50)'},
 
         '11': {
             'MPC':{
@@ -122,6 +139,28 @@ function Result(props){
 
 
 
+
+      useEffect(() => {
+        const data = [...result];
+    
+        data.sort((a, b) => {
+            const examnumberA = parseInt(a.examnumber);
+            const examnumberB = parseInt(b.examnumber);
+    
+            return examnumberA - examnumberB;
+        });
+
+    
+        setresult(data);
+    }, []);
+    
+    
+    
+
+      
+
+
+
       var j=0;
 
 
@@ -143,54 +182,21 @@ function Result(props){
                                  response.user.class <= 9 ? response.user.class_sec.slice(1) :
                                   response.user.class_sec.slice(2)
                             })</label></h1>
-                            <h1 key={1002}>Mother's Name : <label key={1007}>{response.user.mname}</label></h1>
-                            <h1 key={1001}>Father's Name : <label key={1006}>{response.user.fname}</label></h1>
+                            {
+                                response.user.mname?
+                                <h1 key={1002}>Mother's Name : <label key={1007}>{response.user.mname}</label></h1>
+                                :
+                                ''
+                            }
+                            {
+                                response.user.fname?
+                                <h1 key={1001}>Father's Name : <label key={1006}>{response.user.fname}</label></h1>
+                                :
+                                ''
+                            }
                             
                         </div>                        
                         <label className="resultcaption" key={1020}>RESULT</label>
-        
-                        {/* <table className="result" cellPadding="15px" cellSpacing="1px">
-                            <thead>
-                                <tr className="resultheadings">
-                                    <th>ExamName</th>
-                                    <th>English</th>
-                                    <th>Language 2</th>
-                                    <th>Language 3</th>
-                                    <th>Maths</th>
-                                    <th>Science</th>
-                                    <th>Social</th>
-                                    <th>Computers</th>
-                                    <th>GK (60)</th>
-                                </tr>
-                            </thead>
-                            
-                            <thead >
-                               <tr className="resultbody">
-                                    <th>PT1 (30)</th>
-                                    <td>{result[0].english}</td>
-                                    <td>{result[0].lang2}</td>
-                                    <td>{result[0].lang3===''?'-':result.lang3}</td>
-                                    <td>{result[0].maths}</td>
-                                    <td>{result[0].science}</td>
-                                    <td>{result[0].social}</td>
-                                    <td>{result[0].computer===''?'-':result.computer}</td>
-                                    <td>{result[0].gk===''?'-':result.gk}</td>
-                                </tr>
-                            </thead >
-                            <thead>
-                                <tr className="resultbody">
-                                    <th>Term 1 (100)</th>
-                                    <td>{result[1].english}</td>
-                                    <td>{result[1].lang2}</td>
-                                    <td>{result[1].lang3}</td>
-                                    <td>{result[1].maths}</td>
-                                    <td>{result[1].science}</td>
-                                    <td>{result[1].social}</td>
-                                    <td>{result[1].computer}</td>
-                                    <td>{result[1].gk}</td>
-                                </tr>
-                            </thead>
-                        </table> */}
 
                             <table className="result" cellPadding="15px" cellSpacing="1px">
                                 <thead>
@@ -202,9 +208,12 @@ function Result(props){
                                         result.map((item)=>(
                                             <tr className="resultbody" key={j+100}>
                                                 <th key={item.examname}>{
-                                                    item.examname==='PD1'?'PT 1 (30)'
+                                                    String(item.examname).toLowerCase()==='pd1'?<>PT - &#8544; (30)</>
                                                         :
-                                                    item.examname==='Half Yearly'?'Term 1 (100)':''
+                                                    String(item.examname).toLowerCase()==='pd2'?<>PT - &#8545; (30)</>
+                                                        :
+                                                    'HY Exam (80/70)'
+                                                
                                                 }</th>
                                                 {
                                                     subjectnames.map((i)=>{
@@ -225,8 +234,8 @@ function Result(props){
         
         
                         <div className="buttons">
-                            <a href={`https://kcpsarpschool.org/wp-content/uploads/2023/10/${response.user.admno}_pt1.pdf`} target="_blank">PD1_({response.user.admno}).pdf</a>
-                            <a href={`https://kcpsarpschool.org/wp-content/uploads/2023/10/${response.user.admno}.pdf`} target="_blank">HalfYearly_({response.user.admno}).pdf</a>
+                            {/* <a href={`https://kcpsarpschool.org/wp-content/uploads/2023/10/${response.user.admno}_pt1.pdf`} target="_blank">PD1_({response.user.admno}).pdf</a> */}
+                            {/* <a href={`https://kcpsarpschool.org/wp-content/uploads/2023/10/${response.user.admno}_term_1.pdf`} target="_blank">TERM-I_({response.user.admno}).pdf</a> */}
                         </div>
 
 

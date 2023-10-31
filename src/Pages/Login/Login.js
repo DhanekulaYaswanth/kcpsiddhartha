@@ -47,6 +47,13 @@ function Login(props){
 
    
       useEffect(()=>{
+        if(error===404){
+            document.title = '503 error page-KCPSARP'; // Set your desired title here
+        }else
+            document.title = 'Parent\'s Login-KCPSARP'; // Set your desired title here
+      },[error])
+
+      useEffect(()=>{
         if(response.length!==0){
             setresponse([])
             setloading(false)
@@ -63,8 +70,9 @@ function Login(props){
                 <div className='errorpage'>
                     <label className="heading503">503</label>
                     <FontAwesomeIcon className="error503" icon={faXmark}/>
-                    <label>Service Unavailable</label>
-                    <label>Try Again after some time (or) Contact Admin for assistance</label>
+                    <label><b>Server is currently  busy</b></label>
+                    <label>Try Again after some time </label>
+                    <label>Thank you for your patience</label>
                 </div>
                 :
             <div>

@@ -171,7 +171,7 @@
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.715);
     width: 500px;
-    height: 360px;
+    height: 400px;
   }
   
   
@@ -248,6 +248,30 @@
         height: 20px;
     }
 
+    .errorpage>.heading503{
+        font-size: 50px;
+    }
+
+    .error503{
+        border: 3px solid;
+        width:60px;
+        height: 60px;
+        padding: 5px;
+    }
+
+    .errorpage{
+        gap: 20px;
+        padding: 20px;
+        width: 400px;
+        height: 350px;
+      }
+    
+    
+      .errorpage>label{
+        font-size: 20px;
+      }
+    
+
 }
 
 
@@ -315,6 +339,30 @@
         height: 15px;
     }
 
+
+    .errorpage>.heading503{
+        font-size: 40px;
+    }
+
+    .error503{
+        border: 3px solid;
+        width:50px;
+        height: 50px;
+        padding: 5px;
+    }
+
+    .errorpage{
+        gap: 20px;
+        padding: 20px;
+        width: 300px;
+        height: 350px;
+      }
+    
+    
+      .errorpage>label{
+        font-size: 20px;
+      }
+
 }
 
 
@@ -376,6 +424,25 @@
         width: 15px;
         height: 15px;
     }
+
+
+    .error503{
+        width:40px;
+        height: 40px;
+        padding: 5px;
+    }
+
+    .errorpage{
+        gap: 20px;
+        padding: 20px;
+        width:300px;
+        height: 300px;
+      }
+    
+    
+      .errorpage>label{
+        font-size: 20px;
+      }
 
 }
 
@@ -440,6 +507,28 @@
         width: 15px;
         height: 15px;
     }
+
+    .errorpage>.heading503{
+        font-size: 40px;
+    }
+
+    .error503{
+        width:30px;
+        height: 30px;
+        padding: 5px;
+    }
+
+    .errorpage{
+        gap: 20px;
+        padding: 20px;
+        width: 200px;
+        height: 250px;
+      }
+    
+    
+      .errorpage>label{
+        font-size: 15px;
+      }
 
 }
 

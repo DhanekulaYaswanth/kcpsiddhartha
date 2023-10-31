@@ -19,7 +19,7 @@ app.use(express.json());
 
 
 const corsOptions = {
-  origin: ['https://www.kcpsarpschool.org','https://kcpsarpschool.org'],
+  origin: ['https://www.kcpsarpschool.org','https://kcpsarpschool.org','http://localhost:3000'],
 };
 
 
@@ -43,11 +43,11 @@ app.post('/validate',(req,res)=>{
 
   connection.connect((err) => {
     if (err) {
-      console.error('Error connecting to the database: ', err);
+      //console.error('Error connecting to the database: ', err);
       return;
     }
   
-    console.log('Connected to the database');
+    //console.log('Connected to the database');
   });
   
 
@@ -55,7 +55,7 @@ app.post('/validate',(req,res)=>{
 
   connection.query(`SELECT * FROM ${tablename} WHERE admno = ?`, [userId], (err, results) => {
     if (err) {
-      console.error('Error querying the database: ', err);
+      //console.error('Error querying the database: ', err);
       res.status(500).send('Error querying the database');
       return;
     }
@@ -76,7 +76,7 @@ app.post('/validate',(req,res)=>{
 
         getMarks(user.admno,user.class , (err, data) => {
           if (err) {
-            console.error('Error fetching data:', err);
+            //console.error('Error fetching data:', err);
             return;
           }
 
@@ -98,7 +98,7 @@ app.post('/validate',(req,res)=>{
       }
     }
     connection.end((err)=>{
-      if(err) console.log(err)
+      //if(err) console.log(err)
     })
   });
 
@@ -121,7 +121,7 @@ const getMarks = (admno,classno, callback) => {
 
   connection.query(query, (err, result) => {
     if (err) {
-      console.log(err);
+      //console.log(err);
       callback(err, null); // Pass an error to the callback
       return;
     }
@@ -147,18 +147,18 @@ app.post('/resetpass',(req,res)=>{
     
     connection.connect((err) => {
       if (err) {
-        console.error('Error connecting to the database: ', err);
+        //console.error('Error connecting to the database: ', err);
         return;
       }
     
-      console.log('Connected to the database');
+      //console.log('Connected to the database');
     });
     
     const tablename = process.env.studentdata;
     
     connection.query(`UPDATE ${tablename} SET pwd = ?, flag = ? WHERE admno = ?`, [password,1,userId],(err, updateResults) => {
       if (err) {
-        console.error('Error updating password and flag: ', err);
+        //console.error('Error updating password and flag: ', err);
         res.status(500).send('Error updating password and flag');
         return;
       }
@@ -166,8 +166,8 @@ app.post('/resetpass',(req,res)=>{
       res.send({ status: true, message: 'Password and flag updated' });
       
       connection.end((err) => {
-        if (err) console.log(err);
-        console.log('connection ended')
+        //if (err) console.log(err);
+        //console.log('connection ended')
       });
     });
 })
@@ -184,8 +184,11 @@ app.post('/resetpass',(req,res)=>{
 
 
 
+
+
+
 app.listen(3030,()=>{
-  console.log('server started on port 3030')
+  //console.log('server started on port 3030')
 })
 
 
